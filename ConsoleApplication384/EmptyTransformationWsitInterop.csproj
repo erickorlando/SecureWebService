@@ -90,13 +90,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Service References\ServiceReference1\ConsoleApplication384.ServiceReference1.ArrayOfInt.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Service References\ServiceReference1\ServicioCalculadora.wsdl" />
+    <None Include="Service References\ServiceReference1\ServicioCalculadora.xsd">
+      <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\ConsoleApplication384.ServiceReference1.Cls.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Service References\ServiceReference1\ServicioCalculadora1.xsd">
+      <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\SimpleService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

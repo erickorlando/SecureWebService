@@ -24,34 +24,16 @@ namespace ConsoleApplication384.encoder
 		{
 			this.factory = factory;
 			
-			this.writerSettings = new XmlWriterSettings();            
+			writerSettings = new XmlWriterSettings();            
 		}
 
-		public override string ContentType
-		{
-			get
-			{
-				return "text/xml";
-			}
-		}
+		public override string ContentType => "text/xml";
 
-		public override string MediaType
-		{
-			get 
-			{
-				return "text/xml";
-			}
-		}
+	    public override string MediaType => "text/xml";
 
-		public override MessageVersion MessageVersion
-		{
-			get 
-			{
-				return this.factory.MessageVersion;
-			}
-		}
+	    public override MessageVersion MessageVersion => factory.MessageVersion;
 
-		public override Message ReadMessage(ArraySegment<byte> buffer, BufferManager bufferManager, string contentType)
+	    public override Message ReadMessage(ArraySegment<byte> buffer, BufferManager bufferManager, string contentType)
 		{   
 			byte[] msgContents = new byte[buffer.Count];
 			Array.Copy(buffer.Array, buffer.Offset, msgContents, 0, msgContents.Length);
@@ -99,7 +81,7 @@ namespace ConsoleApplication384.encoder
 
 			var body = ExtractIVAndDecrypt(AesManagedAlg, cypher, 0, cypher.Length);
 
-			return UTF8Encoding.UTF8.GetString(body);
+			return Encoding.UTF8.GetString(body);
 		}
 
 		internal static byte[] ExtractIVAndDecrypt(SymmetricAlgorithm algorithm, byte[] cipherText, int offset, int count)
@@ -145,7 +127,7 @@ namespace ConsoleApplication384.encoder
 
 		private byte[] GetEncryptingKey()
 		{
-			return this.key;
+			return key;
 
 			/*
 			string wrappingKey = "";
@@ -159,7 +141,7 @@ namespace ConsoleApplication384.encoder
 		public override ArraySegment<byte> WriteMessage(Message message, int maxMessageSize, BufferManager bufferManager, int messageOffset)
 		{
 			MemoryStream stream = new MemoryStream();
-			XmlWriter writer = XmlWriter.Create(stream, this.writerSettings);
+			XmlWriter writer = XmlWriter.Create(stream, writerSettings);
 			message.WriteMessage(writer);
 			writer.Close();
 
@@ -192,12 +174,12 @@ namespace ConsoleApplication384.encoder
 			var symmetricKey = securityKey.GetType().GetField("symmetricKey", 
 											   BindingFlags.NonPublic | BindingFlags.Instance);
 			
-			this.key = (byte[])symmetricKey.GetValue(securityKey);
+			key = (byte[])symmetricKey.GetValue(securityKey);
 		}
 
 		public override void WriteMessage(Message message, Stream stream)
 		{
-			XmlWriter writer = XmlWriter.Create(stream, this.writerSettings);
+			XmlWriter writer = XmlWriter.Create(stream, writerSettings);
 			message.WriteMessage(writer);
 			writer.Close();
 		}

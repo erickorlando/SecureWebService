@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyTransformationWsitInterop", "ConsoleApplication384\EmptyTransformationWsitInterop.csproj", "{880ABE52-7DA6-42EB-AAC3-AA653D08B4E8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B47C569E-E99A-46E1-B225-E1EC29A735DD} = {B47C569E-E99A-46E1-B225-E1EC29A735DD}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicioSeguro", "ServicioSeguro\ServicioSeguro.csproj", "{B47C569E-E99A-46E1-B225-E1EC29A735DD}"
 EndProject

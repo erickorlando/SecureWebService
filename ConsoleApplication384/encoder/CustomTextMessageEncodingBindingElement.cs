@@ -13,12 +13,12 @@ namespace ConsoleApplication384.encoder
         
         private string mediaType;
         private string encoding;
-        private XmlDictionaryReaderQuotas readerQuotas;
+        private readonly XmlDictionaryReaderQuotas _readerQuotas;
         
 
         public CustomTextMessageBindingElement()
         {
-            this.readerQuotas = new XmlDictionaryReaderQuotas();
+            _readerQuotas = new XmlDictionaryReaderQuotas();
         }
 
 
@@ -49,7 +49,7 @@ namespace ConsoleApplication384.encoder
         public override IChannelFactory<TChannel> BuildChannelFactory<TChannel>(BindingContext context)
         {
             if (context == null)
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
 
             context.BindingParameters.Add(this);
             return context.BuildInnerChannelFactory<TChannel>();
@@ -58,7 +58,7 @@ namespace ConsoleApplication384.encoder
         public override bool CanBuildChannelFactory<TChannel>(BindingContext context)
         {
             if (context == null)
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
 
             return context.CanBuildInnerChannelFactory<TChannel>();
         }
@@ -66,7 +66,7 @@ namespace ConsoleApplication384.encoder
         public override IChannelListener<TChannel> BuildChannelListener<TChannel>(BindingContext context)
         {
             if (context == null)
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
 
             context.BindingParameters.Add(this);
             return context.BuildInnerChannelListener<TChannel>();
@@ -75,7 +75,7 @@ namespace ConsoleApplication384.encoder
         public override bool CanBuildChannelListener<TChannel>(BindingContext context)
         {
             if (context == null)
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
 
             context.BindingParameters.Add(this);
             return context.CanBuildInnerChannelListener<TChannel>();
@@ -85,7 +85,7 @@ namespace ConsoleApplication384.encoder
         {
             if (typeof(T) == typeof(XmlDictionaryReaderQuotas))
             {
-                return (T)(object)this.readerQuotas;
+                return (T)(object)_readerQuotas;
             }
             else
             {
@@ -103,8 +103,10 @@ namespace ConsoleApplication384.encoder
         {
             // The MessageEncodingBindingElement is responsible for ensuring that the WSDL has the correct
             // SOAP version. We can delegate to the WCF implementation of TextMessageEncodingBindingElement for this.
-            TextMessageEncodingBindingElement mebe = new TextMessageEncodingBindingElement();
-            mebe.MessageVersion = this.MessageVersion;
+            var mebe = new TextMessageEncodingBindingElement
+            {
+                MessageVersion = MessageVersion
+            };
             ((IWsdlExportExtension)mebe).ExportEndpoint(exporter, context);
         }
 

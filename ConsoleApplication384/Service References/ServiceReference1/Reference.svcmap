@@ -18,10 +18,12 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost/MyWebServices/Services/SimpleService.asmx?WSDL" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost/ServicioSeguro/ServicioCalculadora.svc?WSDL" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SimpleService.wsdl" MetadataType="Wsdl" ID="7639cbc6-937a-4535-9a7d-cfd4ebbc8fbe" SourceId="1" SourceUrl="http://localhost/MyWebServices/Services/SimpleService.asmx?WSDL" />
+    <MetadataFile FileName="ServicioCalculadora.xsd" MetadataType="Schema" ID="d18c6b27-deaf-4ab7-9cd7-01f12c1b3cac" SourceId="1" SourceUrl="http://localhost/ServicioSeguro/ServicioCalculadora.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioCalculadora.wsdl" MetadataType="Wsdl" ID="77186954-8517-4c23-b816-ef563d47b707" SourceId="1" SourceUrl="http://localhost/ServicioSeguro/ServicioCalculadora.svc?WSDL" />
+    <MetadataFile FileName="ServicioCalculadora1.xsd" MetadataType="Schema" ID="e9866d01-3f89-4efb-ae50-8d6782ea62de" SourceId="1" SourceUrl="http://localhost/ServicioSeguro/ServicioCalculadora.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
